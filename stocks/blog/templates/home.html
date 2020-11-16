@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block title %}Stock Portfolio{% endblock %}
 
-{% if ticker %}
+{% block content %}
+<h1>Post</h1>
+<ul>
+    {% for post in object_list %}
+        <li> <a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a>-{{ post.author }}-{{post.post_date}}-<a href="{% url 'update_post' post.pk %}">Edit Post</a>-<a href="{% url 'delete_post' post.pk %}">Delete Post</a><br/>
+        {{ post.body }}</li>
+    {% endfor %}
+</ul>
+
+<!-- {% if ticker %}
     {{ticker}}
 {% endif %}
 
@@ -20,12 +29,12 @@
         <h1>{{api.week52Low}}</h1><br/>
 
 
-        <!-- {% for key, value in api.items %}
+        {% for key, value in api.items %}
             {{key}}:{{value}}<br/>
-        {% endfor %} -->
+        {% endfor %} 
 
     {% endif %}
 {% else %}
 
-{% endif %}
+{% endif %} -->
 {% endblock %}

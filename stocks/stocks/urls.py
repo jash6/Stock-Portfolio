@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from quotes import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('quotes.urls')),
+    path('dashboard/',views.dashboard, name='dashboard'),
+    path('delete/<stock_id>',views.delete,name='delete'),
+    path('deletestock/',views.deletestock, name='deletestock'),
+    path('', include('blog.urls')),
 ]
