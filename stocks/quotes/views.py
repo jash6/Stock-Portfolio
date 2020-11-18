@@ -38,12 +38,13 @@ def dashboard(request):
         form =StockForm(request.POST or None)
 
         if form.is_valid():
+            form.instance.owner = request.user
             form.save()
             messages.success(request,("Stock has been Added!"))
             return redirect('dashboard')
         
     else:  
-        ticker =Stock.objects.all()
+        ticker =Stock.objects.filter(owner=request.user)
         output =[]
         for ticker_item in ticker:
             api_request = requests.get("https://cloud.iexapis.com/stable/stock/" + str(ticker_item) + "/quote?token=pk_873df7d7e66c4c1fac2b36e03ab53d51")
