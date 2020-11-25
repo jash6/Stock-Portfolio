@@ -1,1 +1,1 @@
-# Stock-market website
+# Stock-portfolio webapp
